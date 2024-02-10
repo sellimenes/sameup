@@ -4,6 +4,21 @@
         "new": "new",
         "headerTitle": "Header Title",
         "author": "Selim Enes",
-        "footerText": "Made with love by"
+        "footerText": "Made with love by",
+        "year": "year",
+        "years": "years",
+        "month": "month",
+        "months": "months",
+        "day": "day",
+        "days": "days",
+        "hour": "hour",
+        "hours": "hours",
+        "minute": "minute",
+        "minutes": "minutes",
+        "second": "second",
+        "seconds": "seconds",
+        "followers": "follower(s)",
+        "follow": "Follow",
+        "noAltForThisImage": "No alt text for this image"
     }
 }

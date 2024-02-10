@@ -4,6 +4,21 @@
         "new": "yeni",
         "headerTitle": "Başlık",
         "author": "Selim Enes",
-        "footerText": "tarafından geliştirildi."
+        "footerText": "tarafından geliştirildi.",
+        "year": "yıl",
+        "years": "yıl",
+        "month": "ay",
+        "months": "ay",
+        "day": "gün",
+        "days": "gün",
+        "hour": "saat",
+        "hours": "saat",
+        "minute": "dakika",
+        "minutes": "dakika",
+        "second": "saniye",
+        "seconds": "saniye",
+        "followers": "takipçi",
+        "follow": "Takip Et",
+        "noAltForThisImage": "Bu resim için alternatif metin yok."
     }
 }
