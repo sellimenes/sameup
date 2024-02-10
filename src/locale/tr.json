@@ -1,8 +1,5 @@
 {
     "translation": {
-        "test": "test",
-        "new": "yeni",
-        "headerTitle": "Başlık",
         "author": "Selim Enes",
         "footerText": "tarafından geliştirildi.",
         "year": "yıl",
@@ -20,6 +17,11 @@
         "followers": "takipçi",
         "follow": "Takip Et",
         "noAltForThisImage": "Bu resim için alternatif metin yok.",
-        "reactions": "Reaksiyonlar"
+        "reactions": "Reaksiyonlar",
+        "like": "Beğen",
+        "comment": "Yorum Yap",
+        "share": "Paylaş",
+        "send": "Gönder",
+        "addComment": "Yorum ekle..."
     }
 }

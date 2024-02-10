@@ -5,7 +5,8 @@ import { t } from 'i18next';
 import { useFormatDistance } from '@/lib/useFormatDifference';
 import CustomSvg from './CustomSvg';
 import { Button } from './ui/button';
-import { Plus } from 'lucide-react';
+import { MessageCircleMore, Plus, Repeat, Send, ThumbsUp } from 'lucide-react';
+import { Input } from './ui/input';
 
 type ReactorType = {
     imageUrl: string;
@@ -52,9 +53,9 @@ const ContentDetail = () => {
     });
 
     return (
-        <section className='border rounded-xl max-w-[620px] w-full max-h-max my-6 mx-auto p-5 bg-white'>
+        <section className='border sm:rounded-xl max-w-[620px] w-full max-h-max my-6 py-5 mx-auto bg-white dark:bg-[#1B1F23]'>
             {/* Content Detail Header Start */}
-            <div className='flex items-start justify-between'>
+            <div className='px-5 flex items-start justify-between'>
                 <div className='flex items-center gap-3'>
                     <img src={data?.imageUrl} alt={data?.publisherName} className='w-12 h-12 rounded-full' loading='lazy' />
                     <div>
@@ -71,8 +72,8 @@ const ContentDetail = () => {
                     {t('follow')}
                 </Button>
             </div>
-            <p>{data?.content.title}</p>
-            <p className='font-light'>
+            <p className='px-5'>{data?.content.title}</p>
+            <p className='px-5 font-light'>
                 {data?.content.tags.map((tag, index) => (
                     <span key={index}>#{tag} </span>
                 ))}
@@ -84,7 +85,7 @@ const ContentDetail = () => {
             {/* Content Image End */}
 
             {/* Reaction Icons Start */}
-            <div className='w-full border-b pb-2 flex items-center gap-1'>
+            <div className='mx-5 py-2 border-b flex items-center gap-1'>
                 <CustomSvg name='like' size='18' />
                 {/* TODO: Like sayısı gözükmüyor. */}
                 <span className='opacity-60 text-sm'>{data?.content?.reactions?.like ? 0 : 8}</span>
@@ -92,7 +93,7 @@ const ContentDetail = () => {
             {/* Reaction Icons End */}
 
             {/* Reactors Start */}
-            <div>
+            <div className='px-5'>
                 <p className='mt-4 mb-2 text-lg font-light'>{t('reactions')}</p>
                 <div className='flex items-center gap-2'>
                     {data?.content.reactors.map((reactor, index) => (
@@ -108,7 +109,65 @@ const ContentDetail = () => {
                 </div>
             </div>
             {/* Reactors End */}
+
+            {/* Social Action Bar Start */}
+            <SocialActions />
+            {/* Social Action Bar End */}
         </section>
+    )
+}
+
+type SubChannelType = {
+    name: string;
+    slug: string;
+    photoUrl: string;
+};
+
+type UserType = {
+    name: string;
+    profileSlug: string;
+    profilePhotoUrl: string;
+    subChannels: SubChannelType[];
+};
+
+const SocialActions = () => {
+    const [currentUser, setCurrentUser] = useState<UserType>();
+    useEffect(() => {
+        const getUser = async () => {
+            const response = await axios.get('/currentUser.json');
+            setCurrentUser(response.data);
+        }
+
+        getUser();
+    }, []);
+    return(
+        <div className='px-5'>
+            <div className='mt-8 flex items-stretch justify-between'>
+                <div className='p-3 hover:bg-gray-200 rounded-sm'>
+                    <img src={currentUser?.profilePhotoUrl} alt={currentUser?.name} className='w-8 h-8 rounded-full overflow-hidden' />
+                </div>
+                <div className='p-3 flex items-center flex-wrap gap-1 hover:bg-gray-200 rounded-sm opacity-60 text-lg font-semibold'>
+                <ThumbsUp className='h-6 w-6 -scale-x-100' />
+                {t('like')}
+                </div>
+                <div className='p-3 flex items-center flex-wrap gap-1 hover:bg-gray-200 rounded-sm opacity-60 text-lg font-semibold'>
+                <MessageCircleMore className='h-6 w-6' />
+                {t('comment')}
+                </div>
+                <div className='p-3 flex items-center flex-wrap gap-1 hover:bg-gray-200 rounded-sm opacity-60 text-lg font-semibold'>
+                <Repeat className='h-6 w-6' />
+                {t('share')}
+                </div>
+                <div className='p-3 flex items-center flex-wrap gap-1 hover:bg-gray-200 rounded-sm opacity-60 text-lg font-semibold'>
+                <Send className='h-6 w-6' />
+                {t('send')}
+                </div>
+            </div>
+            <div className='mt-5 flex items-center justify-between gap-3'>
+                <img src={currentUser?.profilePhotoUrl} alt={currentUser?.name} className='w-10 h-10 rounded-full overflow-hidden' />
+                <Input placeholder={t('addComment')} className='rounded-full bg-transparent border-black/60' />
+            </div>
+        </div>
     )
 }
 

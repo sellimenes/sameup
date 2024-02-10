@@ -1,8 +1,6 @@
 {
     "translation": {
-        "test": "test",
         "new": "new",
-        "headerTitle": "Header Title",
         "author": "Selim Enes",
         "footerText": "Made with love by",
         "year": "year",
@@ -20,6 +18,11 @@
         "followers": "follower(s)",
         "follow": "Follow",
         "noAltForThisImage": "No alt text for this image",
-        "reactions": "Reactions"
+        "reactions": "Reactions",
+        "like": "Like",
+        "comment": "Comment",
+        "share": "Share",
+        "send": "Send",
+        "addComment": "Add a comment..."
     }
 }

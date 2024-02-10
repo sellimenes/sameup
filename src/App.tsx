@@ -11,7 +11,7 @@ function App() {
   return (
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
       <Header />
-      <main className='flex-1 container'>
+      <main className='flex-1 w-full sm:container'>
        <ContentDetail />
       </main>
       <Footer />
