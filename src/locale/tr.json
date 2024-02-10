@@ -19,6 +19,7 @@
         "seconds": "saniye",
         "followers": "takipçi",
         "follow": "Takip Et",
-        "noAltForThisImage": "Bu resim için alternatif metin yok."
+        "noAltForThisImage": "Bu resim için alternatif metin yok.",
+        "reactions": "Reaksiyonlar"
     }
 }

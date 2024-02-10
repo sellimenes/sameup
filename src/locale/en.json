@@ -19,6 +19,7 @@
         "seconds": "seconds",
         "followers": "follower(s)",
         "follow": "Follow",
-        "noAltForThisImage": "No alt text for this image"
+        "noAltForThisImage": "No alt text for this image",
+        "reactions": "Reactions"
     }
 }
