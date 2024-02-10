@@ -8,9 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-type Props = {}
-
-const LanguageToggle = (props: Props) => {
+const LanguageToggle = () => {
     const { i18n: {changeLanguage, language} } = useTranslation();
 
     return (
@@ -37,11 +35,3 @@ const LanguageToggle = (props: Props) => {
 }
 
 export default LanguageToggle
-
- {/* <h1>
-          Our Translated Header: 
-          {t('headerTitle', { appName: "App for Translations" })}
-        </h1>
-        <h3>
-          Current Language: {currentLanguage}
-        </h3> */}
