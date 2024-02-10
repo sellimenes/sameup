@@ -2,6 +2,8 @@
     "translation": {
         "test": "test",
         "new": "new",
-        "headerTitle": "Header Title"
+        "headerTitle": "Header Title",
+        "author": "Selim Enes",
+        "footerText": "Made with love by"
     }
 }
