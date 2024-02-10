@@ -1,10 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
  
 @layer base {
   :root {
-    --background: 40 21% 95%;
+    --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -36,7 +36,7 @@
   }
  
   .dark {
-    --background: 0 0% 0%;
+    --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
  
     --card: 222.2 84% 4.9%;
@@ -68,9 +68,9 @@
  
 @layer base {
   * {
-    @apply tailwind.config.jsborder-border;
+    @apply border-border;
   }
   body {
-    @apply tailwind.config.jsbg-background tailwind.config.jstext-foreground;
+    @apply bg-background text-foreground;
   }
 }
