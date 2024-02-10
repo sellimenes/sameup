@@ -23,6 +23,8 @@
         "comment": "Comment",
         "share": "Share",
         "send": "Send",
-        "addComment": "Add a comment..."
+        "addComment": "Add a comment...",
+        "commentID": "Profile that will be used in comments, reactions and shares:",
+        "save": "Save"
     }
 }

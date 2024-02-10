@@ -1,12 +1,23 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react'
 import { t } from 'i18next';
-
 import { useFormatDistance } from '@/lib/useFormatDifference';
-import CustomSvg from './CustomSvg';
-import { Button } from './ui/button';
+
 import { MessageCircleMore, Plus, Repeat, Send, ThumbsUp } from 'lucide-react';
-import { Input } from './ui/input';
+import CustomSvg from '@/components/CustomSvg';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Separator } from '@/components/ui/separator';
+import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import {
+    Dialog,
+    DialogContent,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+  } from "@/components/ui/dialog"
 
 type ReactorType = {
     imageUrl: string;
@@ -72,12 +83,14 @@ const ContentDetail = () => {
                     {t('follow')}
                 </Button>
             </div>
-            <p className='px-5'>{data?.content.title}</p>
-            <p className='px-5 font-light'>
-                {data?.content.tags.map((tag, index) => (
-                    <span key={index}>#{tag} </span>
-                ))}
-            </p>
+            <div className='my-2'>
+                <p className='px-5'>{data?.content.title}</p>
+                <p className='px-5 font-light'>
+                    {data?.content.tags.map((tag, index) => (
+                        <span key={index}>#{tag} </span>
+                    ))}
+                </p>
+            </div>
             {/* Content Detail Header End */}
 
             {/* Content Image Start */}
@@ -143,29 +156,59 @@ const SocialActions = () => {
     return(
         <div className='px-5'>
             <div className='mt-8 flex items-stretch justify-between'>
-                <div className='p-3 hover:bg-gray-200 rounded-sm'>
-                    <img src={currentUser?.profilePhotoUrl} alt={currentUser?.name} className='w-8 h-8 rounded-full overflow-hidden' />
+                <Dialog>
+                    <DialogTrigger>
+                        <div className='p-3 hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm flex items-center gap-2'>
+                            <img src={currentUser?.profilePhotoUrl} alt={currentUser?.name} className='w-7 h-7 rounded-full overflow-hidden aspect-square' />
+                            <CustomSvg name='arrowDown' size='10' className='opacity-60' />
+                        </div>
+                    </DialogTrigger>
+                    <DialogContent className='bg-white dark:bg-[#1B1F23]'>
+                        <DialogHeader>
+                            <DialogTitle className='text-2xl'>{t('commentID')}</DialogTitle>
+                        </DialogHeader>
+                        <Separator className='my-1 bg-[#45474b] dark:bg-gray-200/60' />
+                        <RadioGroup defaultValue="selim-enes-erdogan">
+                            <div className="flex items-center space-x-2 w-full mb-2">
+                                <img src={currentUser?.profilePhotoUrl} alt={currentUser?.name} className='w-14 h-14' />
+                                <p>{currentUser?.name}</p>
+                                <RadioGroupItem value={currentUser?.profileSlug || 'selim-enes-erdogan'} id={currentUser?.profileSlug} className='!ml-auto' />
+                            </div>
+                            {currentUser?.subChannels.map((subChannel, index) => (
+                                <div key={index} className="flex items-center space-x-2 w-full mb-2">
+                                    <img src={subChannel.photoUrl} alt={subChannel.name} className='w-14 h-14' />
+                                    <p>{subChannel.name}</p>
+                                    <RadioGroupItem value={subChannel.slug} id={subChannel.slug} className='!ml-auto' />
+                                </div>
+                            ))}
+                        </RadioGroup>
+                        <Separator className='my-1 bg-[#45474b] dark:bg-gray-200/60' />
+                        <DialogFooter>
+                            <Button>{t('save')}</Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
+
+                <div className='p-3 flex items-center flex-wrap gap-1 hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-lg font-semibold'>
+                    <ThumbsUp className='h-6 w-6 -scale-x-100' />
+                    {t('like')}
                 </div>
-                <div className='p-3 flex items-center flex-wrap gap-1 hover:bg-gray-200 rounded-sm opacity-60 text-lg font-semibold'>
-                <ThumbsUp className='h-6 w-6 -scale-x-100' />
-                {t('like')}
+                <div className='p-3 flex items-center flex-wrap gap-1 hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-lg font-semibold'>
+                    <MessageCircleMore className='h-6 w-6' />
+                    {t('comment')}
                 </div>
-                <div className='p-3 flex items-center flex-wrap gap-1 hover:bg-gray-200 rounded-sm opacity-60 text-lg font-semibold'>
-                <MessageCircleMore className='h-6 w-6' />
-                {t('comment')}
+                <div className='p-3 flex items-center flex-wrap gap-1 hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-lg font-semibold'>
+                    <Repeat className='h-6 w-6' />
+                    {t('share')}
                 </div>
-                <div className='p-3 flex items-center flex-wrap gap-1 hover:bg-gray-200 rounded-sm opacity-60 text-lg font-semibold'>
-                <Repeat className='h-6 w-6' />
-                {t('share')}
-                </div>
-                <div className='p-3 flex items-center flex-wrap gap-1 hover:bg-gray-200 rounded-sm opacity-60 text-lg font-semibold'>
-                <Send className='h-6 w-6' />
-                {t('send')}
+                <div className='p-3 flex items-center flex-wrap gap-1 hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-lg font-semibold'>
+                    <Send className='h-6 w-6' />
+                    {t('send')}
                 </div>
             </div>
             <div className='mt-5 flex items-center justify-between gap-3'>
-                <img src={currentUser?.profilePhotoUrl} alt={currentUser?.name} className='w-10 h-10 rounded-full overflow-hidden' />
-                <Input placeholder={t('addComment')} className='rounded-full bg-transparent border-black/60' />
+                <img src={currentUser?.profilePhotoUrl} alt={currentUser?.name} className='w-10 h-10 rounded-full overflow-hidden aspect-square' />
+                <Input placeholder={t('addComment')} className='rounded-full bg-transparent border-black/60 dark:border-white/60' />
             </div>
         </div>
     )

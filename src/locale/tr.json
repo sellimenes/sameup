@@ -22,6 +22,8 @@
         "comment": "Yorum Yap",
         "share": "Paylaş",
         "send": "Gönder",
-        "addComment": "Yorum ekle..."
+        "addComment": "Yorum ekle...",
+        "commentID": "Yorumlarda, reaksiyonlarda ve paylaşımlarda kullanacağınız kimlik:",
+        "save": "Kaydet"
     }
 }
