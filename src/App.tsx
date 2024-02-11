@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 
 import './App.css'
 import ContentDetail from './components/ContentDetail';
+import MobileBottomNavbar from './components/MobileBottomNavbar';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <main className='flex-1 w-full sm:container'>
        <ContentDetail />
       </main>
+      <MobileBottomNavbar />
       <Footer />
     </ThemeProvider>
   )

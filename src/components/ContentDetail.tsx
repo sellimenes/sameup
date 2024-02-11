@@ -18,6 +18,7 @@ import {
     DialogTitle,
     DialogTrigger,
   } from "@/components/ui/dialog"
+import Reactors from './Reactors';
 
 type ReactorType = {
     imageUrl: string;
@@ -59,12 +60,8 @@ const ContentDetail = () => {
         getData();
     }, []);
 
-    useEffect(() => {
-        console.log(data)
-    });
-
     return (
-        <section className='border sm:rounded-xl max-w-[620px] w-full max-h-max my-6 py-5 mx-auto bg-white dark:bg-[#1B1F23]'>
+        <section className='border sm:rounded-xl max-w-[620px] overflow-x-hidden w-full max-h-max my-6 py-5 mx-auto bg-white dark:bg-[#1B1F23]'>
             {/* Content Detail Header Start */}
             <div className='px-5 flex items-start justify-between'>
                 <div className='flex items-center gap-3'>
@@ -94,33 +91,20 @@ const ContentDetail = () => {
             {/* Content Detail Header End */}
 
             {/* Content Image Start */}
-            <img src={data?.content.imageUrl} alt={data?.content.alt ? data?.content.alt : t('noAltForThisImage')} />
+            <img src={data?.content.imageUrl} alt={data?.content.alt ? data?.content.alt : t('noAltForThisImage')} className='w-full' />
             {/* Content Image End */}
 
             {/* Reaction Icons Start */}
             <div className='mx-5 py-2 border-b flex items-center gap-1'>
                 <CustomSvg name='like' size='18' />
                 {/* TODO: Like sayısı gözükmüyor. */}
-                <span className='opacity-60 text-sm'>{data?.content?.reactions?.like ? 0 : 8}</span>
+                <span className='opacity-60 text-sm sm:hidden'>Selim Enes {t('and')} {data?.content?.reactions?.like ? 0 : 8} {t('others')}</span>
+
             </div>
             {/* Reaction Icons End */}
 
             {/* Reactors Start */}
-            <div className='px-5'>
-                <p className='mt-4 mb-2 text-lg font-light'>{t('reactions')}</p>
-                <div className='flex items-center gap-2'>
-                    {data?.content.reactors.map((reactor, index) => (
-                        <div key={index} className='relative'>
-                            <a href={reactor.profileUrl}>
-                                <img src={reactor.imageUrl} className='w-12 h-12 rounded-full overflow-hidden' loading='lazy' />
-                                {reactor.reactionType === 'like' && (
-                                    <CustomSvg name='like' size='18' className='absolute bottom-0 right-0 border-white rounded-full border-2' />
-                                )}
-                            </a>
-                        </div>
-                    ))}
-                </div>
-            </div>
+            <Reactors data={data?.content.reactors} />
             {/* Reactors End */}
 
             {/* Social Action Bar Start */}
@@ -155,11 +139,11 @@ const SocialActions = () => {
     }, []);
     return(
         <div className='px-5'>
-            <div className='mt-8 flex items-stretch justify-between'>
+            <div className='mt-2 sm:mt-8 flex items-center justify-between gap-8'>
                 <Dialog>
                     <DialogTrigger>
-                        <div className='p-3 hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm flex items-center gap-2'>
-                            <img src={currentUser?.profilePhotoUrl} alt={currentUser?.name} className='w-7 h-7 rounded-full overflow-hidden aspect-square' />
+                        <div className='sm:p-3 hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm flex items-center gap-2'>
+                            <img src={currentUser?.profilePhotoUrl} alt={currentUser?.name} className='w-8 h-8 rounded-full overflow-hidden aspect-square max-w-max' />
                             <CustomSvg name='arrowDown' size='10' className='opacity-60' />
                         </div>
                     </DialogTrigger>
@@ -189,25 +173,27 @@ const SocialActions = () => {
                     </DialogContent>
                 </Dialog>
 
-                <div className='p-3 flex items-center flex-wrap gap-1 hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-lg font-semibold'>
-                    <ThumbsUp className='h-6 w-6 -scale-x-100' />
-                    {t('like')}
-                </div>
-                <div className='p-3 flex items-center flex-wrap gap-1 hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-lg font-semibold'>
-                    <MessageCircleMore className='h-6 w-6' />
-                    {t('comment')}
-                </div>
-                <div className='p-3 flex items-center flex-wrap gap-1 hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-lg font-semibold'>
-                    <Repeat className='h-6 w-6' />
-                    {t('share')}
-                </div>
-                <div className='p-3 flex items-center flex-wrap gap-1 hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-lg font-semibold'>
-                    <Send className='h-6 w-6' />
-                    {t('send')}
+                <div className='flex items-center justify-between w-full'>
+                    <div className='sm:p-3 flex flex-col sm:flex-row items-center flex-wrap gap-1 hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-sm sm:text-lg font-semibold'>
+                        <ThumbsUp className='h-5 w-5 sm:h-6 sm:w-6 -scale-x-100' />
+                        {t('like')}
+                    </div>
+                    <div className='sm:p-3 flex flex-col sm:flex-row items-center flex-wrap gap-1 hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-sm sm:text-lg font-semibold'>
+                        <MessageCircleMore className='h-5 w-5 sm:h-6 sm:w-6' />
+                        {t('comment')}
+                    </div>
+                    <div className='sm:p-3 flex flex-col sm:flex-row items-center flex-wrap gap-1 hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-sm sm:text-lg font-semibold'>
+                        <Repeat className='h-6 w-6' />
+                        {t('share')}
+                    </div>
+                    <div className='sm:p-3 flex flex-col sm:flex-row items-center flex-wrap gap-1 hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-sm sm:text-lg font-semibold'>
+                        <Send className='h-5 w-5 sm:h-6 sm:w-6' />
+                        {t('send')}
+                    </div>
                 </div>
             </div>
             <div className='mt-5 flex items-center justify-between gap-3'>
-                <img src={currentUser?.profilePhotoUrl} alt={currentUser?.name} className='w-10 h-10 rounded-full overflow-hidden aspect-square' />
+                <img src={currentUser?.profilePhotoUrl} alt={currentUser?.name} className='w-10 h-10 rounded-full overflow-hidden aspect-square max-w-max' />
                 <Input placeholder={t('addComment')} className='rounded-full bg-transparent border-black/60 dark:border-white/60' />
             </div>
         </div>

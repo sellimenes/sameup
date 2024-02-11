@@ -24,6 +24,12 @@
         "send": "Gönder",
         "addComment": "Yorum ekle...",
         "commentID": "Yorumlarda, reaksiyonlarda ve paylaşımlarda kullanacağınız kimlik:",
-        "save": "Kaydet"
+        "save": "Kaydet",
+        "and": "ve",
+        "others": "diğerleri",
+        "network": "Ağım",
+        "post": "Gönderi",
+        "notifications": "Bildirimler",
+        "jobs": "İş İlanları"
     }
 }
