@@ -87,7 +87,7 @@ const ContentDetail = () => {
                 <Button 
                     onClick={() => setIsFollowing(!isFollowing)} 
                     variant='ghost' 
-                    className='text-lg text-[#0a66c2] dark:text-[#71b7fb] hover:text-[#0a66c2] hover:bg-[rgba(112,181,249,0.2)]'
+                    className='text-[#0a66c2] dark:text-[#71b7fb] hover:text-[#0a66c2] hover:bg-[rgba(112,181,249,0.2)]'
                 >
                     {isFollowing ? <Check className='mr-1 h-6 w-6' /> : <Plus className="mr-1 h-4 w-4" />}
                     {t(isFollowing ? 'following' : 'follow')}
@@ -144,7 +144,7 @@ const SocialActions = () => {
     const [commentValue, setCommentValue] = useState<string>('');
     const [isLiked, setIsLiked] = useState<boolean>(false);
 
-    const actionBtnClass = 'hover:cursor-pointer p-3 flex flex-col sm:flex-row sm:gap-1 items-center flex-wrap hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-sm sm:text-lg font-semibold'
+    const actionBtnClass = 'hover:cursor-pointer p-3 flex flex-col sm:flex-row sm:gap-1 items-center flex-wrap sm:hover:bg-gray-200 sm:dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-sm sm:text-lg font-semibold'
 
     useEffect(() => {
         const getUser = async () => {
