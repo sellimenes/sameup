@@ -8,7 +8,7 @@ type Props = {
 const Reactors = ({data}: Props) => {
   return (
     <div className='px-5 hidden sm:block'>
-        <p className='mt-4 mb-2 text-lg font-light'>{t('reactions')}</p>
+        <p className='mt-3 mb-2 text-lg font-light'>{t('reactions')}</p>
         <div className='flex items-center gap-2'>
             {data?.map((reactor: any, index: number) => (
                 <div key={index} className='relative'>

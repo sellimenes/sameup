@@ -29,9 +29,9 @@ const MobileBottomNavbar = () => {
         <section className="fixed sm:hidden bottom-0 w-full border-t border-white/20 px-5 bg-white dark:bg-[#1B1F23]">
             <nav>
                 <ul className="flex items-center justify-between">
-                    <li className={cn("py-2 capitalize flex flex-col items-center gap-[1px] text-xs font-light", active === 'home' ? 'opacity-100': 'opacity-60')}>
+                    <li className="py-2 capitalize flex flex-col items-center gap-[1px] text-xs font-light">
                         <div className="relative">
-                            <CustomSvg name="home" size="22" />
+                            <CustomSvg name="home" size="22" className={cn(active === 'home' ? "opacity-100" : "opacity-60")} />
                             {notifications?.newPostsHome && (
                                 <div className="absolute top-0 -right-1 w-2 h-2 bg-red-600 rounded-full"></div>
                                 )}
@@ -39,34 +39,34 @@ const MobileBottomNavbar = () => {
                         {t('home')}
 
                     </li>
-                    <li className={cn("py-2 capitalize flex flex-col items-center gap-[1px] text-xs font-light", active === 'users' ? 'opacity-100': 'opacity-60')}>
+                    <li className="py-2 capitalize flex flex-col items-center gap-[1px] text-xs font-light">
                         <div className="relative">
-                            <CustomSvg name="users" size="22" />
+                            <CustomSvg name="users" size="22" className={cn(active === 'users' ? "opacity-100" : "opacity-60")} />
                             {notifications && notifications.networkNotificationCount > 0 && (
-                                <div className="absolute -top-1 -right-3 bg-red-600 rounded-full h-4 w-4 flex items-center justify-center">
+                                <div className="absolute -top-1 -right-3 bg-red-600 text-white rounded-full h-4 w-4 flex items-center justify-center">
                                     {notifications.networkNotificationCount}
                                 </div>
                             )}
                         </div>
                         {t('network')}
                     </li>
-                    <li className={cn("py-2 capitalize flex flex-col items-center gap-[1px] text-xs font-light", active === 'plus' ? 'opacity-100': 'opacity-60')}>
-                        <CustomSvg name="plus" size="22" />
+                    <li className="py-2 capitalize flex flex-col items-center gap-[1px] text-xs font-light">
+                        <CustomSvg name="plus" size="22" className={cn(active === 'plus' ? "opacity-100" : "opacity-60")} />
                         {t('post')}
                     </li>
-                    <li className={cn("py-2 capitalize flex flex-col items-center gap-[1px] text-xs font-light", active === 'notifications' ? 'opacity-100': 'opacity-60')}>
+                    <li className="py-2 capitalize flex flex-col items-center gap-[1px] text-xs font-light">
                         <div className="relative">
-                            <CustomSvg name="ring" size="22" />
+                            <CustomSvg name="ring" size="22" className={cn(active === 'ring' ? "opacity-100" : "opacity-60")} />
                             {notifications && notifications.notificationCount > 0 && (
-                            <div className="absolute -top-1 -right-3 bg-red-600 rounded-full flex items-center justify-center px-1">
+                            <div className="absolute -top-1 -right-3 bg-red-600 text-white rounded-full flex items-center justify-center px-1">
                                 {notifications.notificationCount}
                             </div>
                         )}
                         </div>
                         {t('notifications')}
                     </li>
-                    <li className={cn("py-2 capitalize flex flex-col items-center gap-[1px] text-xs font-light", active === 'jobs' ? 'opacity-100': 'opacity-60')}>
-                        <CustomSvg name="jobs" size="22" />
+                    <li className="py-2 capitalize flex flex-col items-center gap-[1px] text-xs font-light">
+                        <CustomSvg name="jobs" size="22" className={cn(active === 'jobs' ? "opacity-100" : "opacity-60")} />
                         {t('jobs')}
                     </li>
                 </ul>

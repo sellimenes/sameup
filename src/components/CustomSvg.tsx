@@ -1,7 +1,7 @@
 import React, { CSSProperties, FC } from 'react';
 
 interface CustomSvgProps {
-    name: 'world' | 'like' | 'arrowDown' | 'home' | 'users' | 'plus' | 'ring' | 'jobs';
+    name: 'world' | 'like' | 'arrowDown' | 'home' | 'users' | 'plus' | 'ring' | 'jobs' | 'back' | 'more';
     size?: string;
     color?: string;
     className?: string;
@@ -53,6 +53,16 @@ const SVGs: { [key in CustomSvgProps['name']]: JSX.Element } = {
     jobs: (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
             <path d="M17 6V5a3 3 0 00-3-3h-4a3 3 0 00-3 3v1H2v4a3 3 0 003 3h14a3 3 0 003-3V6zM9 5a1 1 0 011-1h4a1 1 0 011 1v1H9zm10 9a4 4 0 003-1.38V17a3 3 0 01-3 3H5a3 3 0 01-3-3v-4.38A4 4 0 005 14z"></path>
+        </svg>
+    ),
+    back: (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" focusable="false">
+            <path d="M9 4l-4.87 7H22v2H4.13L9 20H6.56L1 12l5.56-8z"></path>
+        </svg>
+    ),
+    more: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" focusable="false">
+            <path d="M2 7h2v2H2V7zm5 2h2V7H7v2zm5-2v2h2V7h-2z"></path>
         </svg>
     )
   };
