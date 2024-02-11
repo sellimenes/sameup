@@ -35,3 +35,12 @@
  
  - Header ve Footer, ek olarak oluşturuldu. Herhangi bir kaynağa *pixel-perfect* ya da *güzel* olma amacı taşımıyor.
  - Header'da dil ve dark mode için butonlar eklendi.
+
+## Ek Notlar
+
+ - Tüm interface'ler `Types` isimli bir klasörde toplanabilirdi. 
+ - Gerçek projede fetch işlemleri `try/catch` içerisinde kullanılmalı.
+ - Proje büyüklüğüne göre Button içerisinde inline fonksiyon yerine `useCallback` kullanılabilir. Bu sayede her render anında onClick içerisindeki fonksiyonlar yeniden oluşturulmaz.
+ - Render içerisinde ağır işlemler varsa `useMemo` kullanılabilir. Bu sayede her render anında tüm component sıfırdan render edilmez. Yalnızca dependency içeriği değiştikçe tüm component yeniden render olur.
+ - Öncelikli olmayan görseller `lazy load` ile kullanılabilir.
+ - JSX içerisinde birbirini tekrar eden class içerikleri varsa, bunlar bir değişken içine tanımlanabilir ve bu değişken class olarak verilebilir.

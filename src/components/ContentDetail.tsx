@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { t } from 'i18next';
 import { useFormatDistance } from '@/lib/useFormatDifference';
 
-import { Check, MessageCircleMore, Plus, Repeat, Send, ThumbsUp, Ticket } from 'lucide-react';
+import { Check, MessageCircleMore, Plus, Repeat, Send, ThumbsUp } from 'lucide-react';
 import CustomSvg from '@/components/CustomSvg';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -61,10 +61,6 @@ const ContentDetail = () => {
         getData();
     }, []);
 
-    useEffect(() => {
-        console.log(data)
-    }, [data])
-
     if(!data) return (
         <div className="flex justify-center items-center h-screen">
             <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900 dark:border-slate-300"></div>
@@ -87,17 +83,14 @@ const ContentDetail = () => {
                         </div>
                     </div>
                 </div>
-                {isFollowing ? (
-                    <Button onClick={() => setIsFollowing(false)} variant='ghost' className='text-lg text-[#0a66c2] dark:text-[#71b7fb] hover:text-[#0a66c2] hover:bg-[rgba(112,181,249,0.2)]'>
-                        <Check className='mr-1 h-6 w-6' />
-                        {t('following')}
-                    </Button>
-                ) : (
-                    <Button onClick={() => setIsFollowing(true)} variant={'ghost'} className='text-lg text-[#0a66c2] dark:text-[#71b7fb] hover:text-[#0a66c2] hover:bg-[rgba(112,181,249,0.2)]'>
-                        <Plus className="mr-1 h-4 w-4" /> 
-                        {t('follow')}
-                    </Button>
-                )}
+                <Button 
+                    onClick={() => setIsFollowing(!isFollowing)} 
+                    variant='ghost' 
+                    className='text-lg text-[#0a66c2] dark:text-[#71b7fb] hover:text-[#0a66c2] hover:bg-[rgba(112,181,249,0.2)]'
+                >
+                    {isFollowing ? <Check className='mr-1 h-6 w-6' /> : <Plus className="mr-1 h-4 w-4" />}
+                    {t(isFollowing ? 'following' : 'follow')}
+                </Button>
             </div>
             <div className='my-2'>
                 <p className='px-5'>{data?.content.title}</p>
