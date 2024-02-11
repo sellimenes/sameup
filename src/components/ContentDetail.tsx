@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react'
 import { t } from 'i18next';
+import { cn } from '@/lib/utils';
 import { useFormatDistance } from '@/lib/useFormatDifference';
 
 import { Check, MessageCircleMore, Plus, Repeat, Send, ThumbsUp } from 'lucide-react';
@@ -17,7 +18,7 @@ import {
     DialogTitle,
     DialogTrigger,
   } from "@/components/ui/dialog"
-import Reactors from './Reactors';
+import Reactors from '@/components/Reactors';
 
 type ReactorType = {
     imageUrl: string;
@@ -141,6 +142,9 @@ type UserType = {
 const SocialActions = () => {
     const [currentUser, setCurrentUser] = useState<UserType>();
     const [commentValue, setCommentValue] = useState<string>('');
+    const [isLiked, setIsLiked] = useState<boolean>(false);
+
+    const actionBtnClass = 'hover:cursor-pointer p-3 flex flex-col sm:flex-row sm:gap-1 items-center flex-wrap hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-sm sm:text-lg font-semibold'
 
     useEffect(() => {
         const getUser = async () => {
@@ -153,7 +157,7 @@ const SocialActions = () => {
 
     return(
         <div className='pb-5 sm:pb-0'>
-            <div className='px-5 mt-2 sm:mt-8 flex items-center justify-between gap-8'>
+            <div className='px-5 sm:mt-4 flex items-center justify-between gap-8'>
                 <Dialog>
                     <DialogTrigger>
                         <div className='sm:p-3 hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm flex items-center gap-2'>
@@ -188,25 +192,25 @@ const SocialActions = () => {
                 </Dialog>
 
                 <div className='flex items-center justify-between w-full'>
-                    <div className='hover:cursor-pointer sm:p-3 flex flex-col sm:flex-row sm:gap-1 items-center flex-wrap hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-sm sm:text-lg font-semibold'>
+                    <button onClick={() => setIsLiked(!isLiked)} className={cn(actionBtnClass, isLiked && 'text-[#0a66c2] dark:text-[#71b7fb] hover:text-[#0a66c2] hover:bg-[rgba(112,181,249,0.2)]')}>
                         <ThumbsUp className='h-5 w-5 sm:h-6 sm:w-6 -scale-x-100' />
                         {t('like')}
-                    </div>
-                    <div className='hover:cursor-pointer sm:p-3 flex flex-col sm:flex-row sm:gap-1 items-center flex-wrap hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-sm sm:text-lg font-semibold'>
+                    </button>
+                    <button className={actionBtnClass}>
                         <MessageCircleMore className='h-5 w-5 sm:h-6 sm:w-6' />
                         {t('comment')}
-                    </div>
-                    <div className='hover:cursor-pointer sm:p-3 flex flex-col sm:flex-row sm:gap-1 items-center flex-wrap hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-sm sm:text-lg font-semibold'>
+                    </button>
+                    <button className={actionBtnClass}>
                         <Repeat className='h-6 w-6' />
                         {t('share')}
-                    </div>
-                    <div className='hover:cursor-pointer sm:p-3 flex flex-col sm:flex-row sm:gap-1 items-center flex-wrap hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-sm sm:text-lg font-semibold'>
+                    </button>
+                    <button className={actionBtnClass}>
                         <Send className='h-5 w-5 sm:h-6 sm:w-6' />
                         {t('send')}
-                    </div>
+                    </button>
                 </div>
             </div>
-            <div className='mt-2 py-3 flex items-center justify-between gap-3 border-t dark:border-white/30 border-gray-300 shadow-top dark:shadow-top-dark sm:shadow-none sm:border-none'>
+            <div className='py-3 flex items-center justify-between gap-3 border-t dark:border-white/30 border-gray-300 shadow-top dark:shadow-top-dark sm:shadow-none sm:border-none'>
                 <img src={currentUser?.profilePhotoUrl} alt={currentUser?.name} className='ml-5 w-8 h-8 sm:w-12 sm:h-12 rounded-full overflow-hidden aspect-square min-w-max' />
                 <Input placeholder={t('addComment')} value={commentValue} onChange={(e) => setCommentValue(e.target.value)} className='mr-5 pr-5 sm:rounded-full bg-transparent border-none sm:border-solid sm:border-black/60 sm:dark:border-white/60 focus-visible:ring-transparent sm:focus-visible:ring-background' />
                 <Button variant={'ghost'} disabled={commentValue.length === 0} className='sm:hidden'>{t('publish')}</Button>
