@@ -61,7 +61,7 @@ const ContentDetail = () => {
     }, []);
 
     return (
-        <section className='border sm:rounded-xl sm:my-5 sm:py-5 max-w-[620px] overflow-x-hidden w-full max-h-max mx-auto bg-white dark:bg-[#1B1F23]'>
+        <section className='border sm:rounded-xl sm:my-5 sm:py-5 pb-3 max-w-[620px] overflow-x-hidden w-full max-h-max mx-auto bg-white dark:bg-[#1B1F23]'>
             <TopNavigation />
             
             {/* Content Detail Header Start */}
@@ -77,7 +77,7 @@ const ContentDetail = () => {
                         </div>
                     </div>
                 </div>
-                <Button variant={'ghost'} className='text-lg text-[#0a66c2] hover:text-[#0a66c2] hover:bg[rgba(112,181,249,0.2)]'>
+                <Button variant={'ghost'} className='text-lg text-[#0a66c2] dark:text-[#71b7fb] hover:text-[#0a66c2] hover:bg[rgba(112,181,249,0.2)]'>
                     <Plus className="mr-1 h-4 w-4" /> 
                     {t('follow')}
                 </Button>
@@ -150,7 +150,7 @@ const SocialActions = () => {
                     </DialogTrigger>
                     <DialogContent className='bg-white dark:bg-[#1B1F23]'>
                         <DialogHeader>
-                            <DialogTitle className='text-2xl'>{t('commentID')}</DialogTitle>
+                            <DialogTitle className='text-2xl text-left'>{t('commentID')}</DialogTitle>
                         </DialogHeader>
                         <Separator className='my-1 bg-[#45474b] dark:bg-gray-200/60' />
                         <RadioGroup defaultValue="selim-enes-erdogan">
