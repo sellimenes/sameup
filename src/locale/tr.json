@@ -16,6 +16,7 @@
         "seconds": "saniye",
         "followers": "takipçi",
         "follow": "Takip Et",
+        "following": "Takip Ediliyor",
         "noAltForThisImage": "Bu resim için alternatif metin yok.",
         "reactions": "Reaksiyonlar",
         "like": "Beğen",
@@ -30,6 +31,7 @@
         "network": "Ağım",
         "post": "Gönderi",
         "notifications": "Bildirimler",
-        "jobs": "İş İlanları"
+        "jobs": "İş İlanları",
+        "publish": "Yayınla"
     }
 }

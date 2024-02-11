@@ -14,7 +14,7 @@ const LanguageToggle = () => {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size={'icon'} className="uppercase">{language}</Button>
+          <Button variant="outline" size={'icon'} className="uppercase bg-transparent">{language}</Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuCheckboxItem

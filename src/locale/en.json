@@ -17,6 +17,7 @@
         "seconds": "seconds",
         "followers": "follower(s)",
         "follow": "Follow",
+        "following": "Following",
         "noAltForThisImage": "No alt text for this image",
         "reactions": "Reactions",
         "like": "Like",
@@ -31,6 +32,7 @@
         "network": "Network",
         "post": "Post",
         "notifications": "Notifications",
-        "jobs": "Jobs"
+        "jobs": "Jobs",
+        "publish": "Publish"
     }
 }

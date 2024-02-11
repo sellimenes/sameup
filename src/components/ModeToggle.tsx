@@ -7,7 +7,7 @@ export function ModeToggle() {
   const { theme, setTheme } = useTheme()
 
   return (
-    <Button variant="outline" size="icon" onClick={() => theme === "light" ? setTheme('dark') : setTheme('light')}>
+    <Button variant="outline" size="icon" className="bg-transparent" onClick={() => theme === "light" ? setTheme('dark') : setTheme('light')}>
       {theme === "light" ? <Sun /> : <Moon />}
     </Button>
   )

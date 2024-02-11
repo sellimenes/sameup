@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { t } from 'i18next';
 import { useFormatDistance } from '@/lib/useFormatDifference';
 
-import { MessageCircleMore, Plus, Repeat, Send, ThumbsUp } from 'lucide-react';
+import { Check, MessageCircleMore, Plus, Repeat, Send, ThumbsUp, Ticket } from 'lucide-react';
 import CustomSvg from '@/components/CustomSvg';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -49,7 +49,8 @@ type ContentDetailType = {
 
 const ContentDetail = () => {
     const formatDistance = useFormatDistance();
-    const [data, setData] = useState<ContentDetailType>()
+    const [data, setData] = useState<ContentDetailType>();
+    const [isFollowing, setIsFollowing] = useState<boolean>(false);
 
     useEffect(() => {
         const getData = async () => {
@@ -60,8 +61,17 @@ const ContentDetail = () => {
         getData();
     }, []);
 
+    useEffect(() => {
+        console.log(data)
+    }, [data])
+
+    if(!data) return (
+        <div className="flex justify-center items-center h-screen">
+            <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900 dark:border-slate-300"></div>
+        </div>
+    )
     return (
-        <section className='border sm:rounded-xl sm:my-5 sm:py-5 pb-3 max-w-[620px] overflow-x-hidden w-full max-h-max mx-auto bg-white dark:bg-[#1B1F23]'>
+        <section className='border sm:rounded-xl sm:my-5 sm:py-5 pb-3 sm:pb-0 max-w-[620px] overflow-x-hidden w-full max-h-max mx-auto bg-white dark:bg-[#1B1F23]'>
             <TopNavigation />
             
             {/* Content Detail Header Start */}
@@ -77,10 +87,17 @@ const ContentDetail = () => {
                         </div>
                     </div>
                 </div>
-                <Button variant={'ghost'} className='text-lg text-[#0a66c2] dark:text-[#71b7fb] hover:text-[#0a66c2] hover:bg[rgba(112,181,249,0.2)]'>
-                    <Plus className="mr-1 h-4 w-4" /> 
-                    {t('follow')}
-                </Button>
+                {isFollowing ? (
+                    <Button onClick={() => setIsFollowing(false)} variant='ghost' className='text-lg text-[#0a66c2] dark:text-[#71b7fb] hover:text-[#0a66c2] hover:bg-[rgba(112,181,249,0.2)]'>
+                        <Check className='mr-1 h-6 w-6' />
+                        {t('following')}
+                    </Button>
+                ) : (
+                    <Button onClick={() => setIsFollowing(true)} variant={'ghost'} className='text-lg text-[#0a66c2] dark:text-[#71b7fb] hover:text-[#0a66c2] hover:bg-[rgba(112,181,249,0.2)]'>
+                        <Plus className="mr-1 h-4 w-4" /> 
+                        {t('follow')}
+                    </Button>
+                )}
             </div>
             <div className='my-2'>
                 <p className='px-5'>{data?.content.title}</p>
@@ -130,6 +147,8 @@ type UserType = {
 
 const SocialActions = () => {
     const [currentUser, setCurrentUser] = useState<UserType>();
+    const [commentValue, setCommentValue] = useState<string>('');
+
     useEffect(() => {
         const getUser = async () => {
             const response = await axios.get('/currentUser.json');
@@ -138,9 +157,10 @@ const SocialActions = () => {
 
         getUser();
     }, []);
+
     return(
-        <div className='px-5'>
-            <div className='mt-2 sm:mt-8 flex items-center justify-between gap-8'>
+        <div className='pb-5 sm:pb-0'>
+            <div className='px-5 mt-2 sm:mt-8 flex items-center justify-between gap-8'>
                 <Dialog>
                     <DialogTrigger>
                         <div className='sm:p-3 hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm flex items-center gap-2'>
@@ -175,27 +195,28 @@ const SocialActions = () => {
                 </Dialog>
 
                 <div className='flex items-center justify-between w-full'>
-                    <div className='sm:p-3 flex flex-col sm:flex-row sm:gap-1 items-center flex-wrap hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-sm sm:text-lg font-semibold'>
+                    <div className='hover:cursor-pointer sm:p-3 flex flex-col sm:flex-row sm:gap-1 items-center flex-wrap hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-sm sm:text-lg font-semibold'>
                         <ThumbsUp className='h-5 w-5 sm:h-6 sm:w-6 -scale-x-100' />
                         {t('like')}
                     </div>
-                    <div className='sm:p-3 flex flex-col sm:flex-row sm:gap-1 items-center flex-wrap hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-sm sm:text-lg font-semibold'>
+                    <div className='hover:cursor-pointer sm:p-3 flex flex-col sm:flex-row sm:gap-1 items-center flex-wrap hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-sm sm:text-lg font-semibold'>
                         <MessageCircleMore className='h-5 w-5 sm:h-6 sm:w-6' />
                         {t('comment')}
                     </div>
-                    <div className='sm:p-3 flex flex-col sm:flex-row sm:gap-1 items-center flex-wrap hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-sm sm:text-lg font-semibold'>
+                    <div className='hover:cursor-pointer sm:p-3 flex flex-col sm:flex-row sm:gap-1 items-center flex-wrap hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-sm sm:text-lg font-semibold'>
                         <Repeat className='h-6 w-6' />
                         {t('share')}
                     </div>
-                    <div className='sm:p-3 flex flex-col sm:flex-row sm:gap-1 items-center flex-wrap hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-sm sm:text-lg font-semibold'>
+                    <div className='hover:cursor-pointer sm:p-3 flex flex-col sm:flex-row sm:gap-1 items-center flex-wrap hover:bg-gray-200 dark:hover:bg-[#45474b] rounded-sm opacity-60 dark:opacity-90 text-sm sm:text-lg font-semibold'>
                         <Send className='h-5 w-5 sm:h-6 sm:w-6' />
                         {t('send')}
                     </div>
                 </div>
             </div>
-            <div className='mt-5 flex items-center justify-between gap-3'>
-                <img src={currentUser?.profilePhotoUrl} alt={currentUser?.name} className='w-10 h-10 rounded-full overflow-hidden aspect-square max-w-max' />
-                <Input placeholder={t('addComment')} className='rounded-full bg-transparent border-black/60 dark:border-white/60' />
+            <div className='mt-2 py-3 flex items-center justify-between gap-3 border-t dark:border-white/30 border-gray-300 shadow-top dark:shadow-top-dark sm:shadow-none sm:border-none'>
+                <img src={currentUser?.profilePhotoUrl} alt={currentUser?.name} className='ml-5 w-8 h-8 sm:w-12 sm:h-12 rounded-full overflow-hidden aspect-square min-w-max' />
+                <Input placeholder={t('addComment')} value={commentValue} onChange={(e) => setCommentValue(e.target.value)} className='mr-5 pr-5 sm:rounded-full bg-transparent border-none sm:border-solid sm:border-black/60 sm:dark:border-white/60 focus-visible:ring-transparent sm:focus-visible:ring-background' />
+                <Button variant={'ghost'} disabled={commentValue.length === 0} className='sm:hidden'>{t('publish')}</Button>
             </div>
         </div>
     )
@@ -203,9 +224,9 @@ const SocialActions = () => {
 
 const TopNavigation = () => {
     return (
-        <div className='px-5 flex sm:hidden items-center justify-between h-12 border-b mb-5'>
+        <div className='px-5 flex sm:hidden items-center justify-between h-12 border-b dark:border-white/30 border-gray-300 mb-5'>
             <CustomSvg name='back' size='24' />
-            <CustomSvg name='more' size='24' className='rotate-90 mt-2' />
+            <CustomSvg name='more' />
         </div>
     )
 }
