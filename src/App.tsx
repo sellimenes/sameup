@@ -4,7 +4,6 @@ import { ThemeProvider } from './components/theme-provider'
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-import './App.css'
 import ContentDetail from './components/ContentDetail';
 import MobileBottomNavbar from './components/MobileBottomNavbar';
 

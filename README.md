@@ -1,30 +1,37 @@
-# React + TypeScript + Vite
+# SameUp Interview Task
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ - Canlı demo adresi: https://sameup.vercel.app/
+ - Herhangi bir .env dosyası bulunmamaktadır. 
+ - Repo clone işleminden sonra `npm install` ile gereksinimler yüklenebilir, `npm run dev` ile proje açılabilir.
+ - Mail ile gönderilmiş görsel, %80 oranında kaynak olarak kullanıldı. LinkedIn geliştirici araçlarından mümkün olduğunca faydalanılmadı.
+ - Font ve bazı ikon farklılıklarının dikkate alınmamasını rica ederim.
 
-Currently, two official plugins are available:
+## Kullanılan Teknolojiler:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ - Vite 5.1.0
+ - React 18.2.0
+ - ShadCN UI (Tailwind CSS)
+ - clsx
+ - Axios
+ - i18n
 
-## Expanding the ESLint configuration
+## Dosya Yolları ve Dosyalar
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+ - Dummy JSON dosyaları `public` klasörü içerisinde yer almakta.
+ - `Component -> UI` klasörü, ShadCN ile gelen Button, Dropdown gibi reusable UI elementlerini içermekte.
+ - `Lib -> utils.ts` dosyası clsx konfigürasyonunu içermekte. ShadCN ile otomatik oluşturulmuştur.
+ - `Lib -> useFormatDifference.ts` dosyası, custom hook olarak oluşturuldu. Backend'den gelen Date formatındaki veriyi, '1 ay önce' gibi tarih farkına dönüştürüyor.
+ - `Components -> CustomSvg.tsx` dosyası, herhangi bir kütüphane kullanılmadan eklenen SVG görsellerinin düzenli olması için oluşturuldu. Yeniden kullanılabilir bir şekilde SVG'leri buraya ekleyip tüm projede kullanabiliyoruz.
+ - `Locale` klasörü, i18n ile birlikte çoklu dil özelliğini kullandığımız JSON dosyalarını içermekte.
+ - `App.tsx` dosyası, projenin tek sayfası. İçerisine eklenen component'ler ile *layout* mantığında kullanıldı.
+ - `Components -> ContentDetail.tsx` dosyası, post detay için ana component görevi görmekte.
 
-- Configure the top-level `parserOptions` property like this:
+### ContentDetail.tsx
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+ - `ContentDetail` fonksiyonu, dosyanın içerisinde bulunan default fonksiyon.
+ - Ek olarak `SocialActions` ve `TopNavigation` fonksiyonları aynı dosya içerisinde kullanıldı. Yalnızca bu component içerisinde kullanılacağı için farklı bir component olarak oluşturulmadı.
+ 
+ ### Header ve Footer
+ 
+ - Header ve Footer, ek olarak oluşturuldu. Herhangi bir kaynağa *pixel-perfect* ya da *güzel* olma amacı taşımıyor.
+ - Header'da dil ve dark mode için butonlar eklendi.
